@@ -1,0 +1,129 @@
+(01)Insert one data set using Insert Document option in MongoDB. 
+
+(02)Insert one data set using db.students.insertOne() query.
+    db.students.insertOne(
+    {
+    "regno": "2021IT62",
+        "name": "Navo",
+        "age": 22,
+        "degree": "IT",
+        "gpa": 3.2,
+        "gender": "Female",
+        "skills": ["JS", "MongoDB", "Node"]
+    })
+
+(03)Insert data set using db.studentsMany() query.
+    db.students.insertMany(
+    [
+    {
+        "regno": "2021IT01",
+        "name": "Kane",
+        "age": 24,
+        "degree": "IT",
+        "gpa": 3.4,
+        "gender": "Male",
+        "skills": ["Python", "Node", "MongoDB"]
+      },
+      {
+        "regno": "2021IT02",
+        "name": "Anne",
+        "age": 25,
+        "degree": "IT",
+        "gpa": 3.4,
+        "gender": "Female",
+        "skills": ["JS", "MongoDB", "Java"]
+      },
+	  {
+        "regno": "2021IT03",
+        "name": "Meena",
+        "age": 20,
+        "degree": "IT",
+        "gpa": 3.0,
+        "gender": "Female",
+        "skills": ["JS","Python", "Java"]
+      },
+      {
+        "regno": "2021IT04",
+        "name": "Kandu",
+        "age": 21,
+        "degree": "IT",
+        "gpa": 3.6,
+        "gender": "Male",
+        "skills": ["JS", "Python", "MySQL"]
+      }
+      ]);
+
+(04)Filter only name and age.
+
+    Project = {name:1,age:1,_id:0}
+
+(05)Find the details whose regno is "2021IT01".
+
+    query = {regno:"2021IT01"}
+
+    shell query: db.students.find({"regno":"2021IT01"})
+
+(06)Find female students details.
+
+    query = {gender:"Female"}
+
+    shell query: db.students.find({gender:"Female"})
+
+(07)Find the students whose age is greater than 24.
+
+    query = {age:{$gt:24}}
+
+    shell query: db.students.find({age:{$gt:24}})
+
+(08)Find the details of students that have skills in "MongoDB".
+
+    query = {skills:{$in:['MongoDB']}}
+
+    shell query: db.students.find({skills:{$in:['MongoDB']}})
+
+(09)Find the students that have skills in "MongoDB" or "Python".
+
+    query = {skills:{$in:['MongoDB','Python']}}
+
+    shell query: db.students.find({skills:{$in:['MongoDB','Python']}})
+
+(10)Find the details of first female student.
+
+    shell query: db.students.findOne({gender:"Female"})
+
+(11)Sort the details by gpa ascending order.
+
+    project = {_id:0}
+    sort = {gpa:1}
+
+    shell query: db.students.find().sort({gpa:1})
+
+(12)Sort the details by gpa descending order.
+
+    project = {_id:0}
+    sort = {gpa:-1}
+    
+    shell query: db.students.find().sort({gpa:-1})
+
+(13)Sort details by GPA and name in ascending order.
+
+    project = {_id:0,name:1,gpa:1}
+    sort = {gpa:1,name:1}
+
+    shell query: db.students.find().sort({gpa:1,name:1})
+
+(14)Sort by gpa ascending order who are stydying "IT" as degree.
+
+    query = {degree:"IT"}
+    project = {_id:0,name:1,gpa:1,degree:1}
+    sort = {gpa:1}
+
+    shell query: db.students.find({degree:"IT"}).sort({gpa:1})
+
+(15)Sort by gpa ascending order who are stydying "IT" as the degree and gender is "Male".
+
+    query = {degree:"IT",gender:"Male"}
+    project = {_id:0,name:1,gpa:1,degree:1}
+    sort = {gpa:1}
+
+    shell query: db.students.find({degree:"IT",gender:"Male"}).sort({gpa:1})
